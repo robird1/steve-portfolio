@@ -1,0 +1,13 @@
+{
+  "name": "steve-portfolio",
+  "version": "1.0.0",
+  "description": "Android 資深工程師作品集，供接案業主參考",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
