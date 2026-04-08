@@ -174,6 +174,169 @@
             margin-bottom: 6px;
         }
 
+        /* ========== 顯眼按鈕樣式 ========== */
+        .screenshot-btn-container {
+            margin: 16px 0 12px;
+        }
+        .view-screenshots-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+        }
+        .view-screenshots-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+        }
+        .view-screenshots-btn:active {
+            transform: translateY(0);
+        }
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+        /* ========== 照片檢視 Modal（全螢幕幻燈片） ========== */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .gallery-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-main {
+            position: relative;
+            width: 100%;
+            height: 75%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-main img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 44px;
+            cursor: pointer;
+            font-weight: 300;
+            transition: 0.2s;
+            z-index: 10001;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            color: #3b82f6;
+            background: rgba(255,255,255,0.2);
+        }
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            font-size: 2.5rem;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-nav:hover {
+            background: #3b82f6;
+            transform: translateY(-50%) scale(1.05);
+        }
+        .modal-prev {
+            left: 20px;
+        }
+        .modal-next {
+            right: 20px;
+        }
+        .modal-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .modal-thumbnails {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            overflow-x: auto;
+            width: 100%;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            margin-top: 10px;
+        }
+        .modal-thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            opacity: 0.6;
+        }
+        .modal-thumb:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .modal-thumb.active {
+            border-color: #3b82f6;
+            opacity: 1;
+        }
+        /* ========== 樣式結束 ========== */
+
         .skill-cloud {
             display: flex;
             flex-wrap: wrap;
@@ -203,6 +366,11 @@
         @media (max-width: 720px) {
             .hero-info h1 { font-size: 2.2rem; }
             .hero-inner { flex-direction: column; align-items: flex-start; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .modal-nav { width: 40px; height: 40px; font-size: 1.8rem; }
+            .modal-close { top: 10px; right: 15px; width: 40px; height: 40px; font-size: 32px; }
+            .modal-thumb { width: 45px; height: 45px; }
+            .view-screenshots-btn { padding: 12px 16px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -252,14 +420,15 @@
         </div>
     </section>
 
-    <!-- 精選作品 (接案重點) -->
+    <!-- 精選作品集 (接案重點) -->
     <section class="section">
         <h2 class="section-title">精選作品集</h2>
         <div class="grid-2">
+            <!-- 專案 1：嬰兒監視器 -->
             <div class="card">
                 <div class="exp-title">🍼 Lollipop 嬰兒監視器</div>
                 <div class="exp-company">Masterwork Aoitek · 資深Android工程師</div>
-                <div class="exp-date">2022– 2026</div>
+                <div class="exp-date">2022–2026</div>
                 <div class="tech-stack"><span class="tech">Kotlin</span><span class="tech">MVVM</span><span class="tech">JNI</span><span class="tech">RTSP</span><span class="tech">AI模型</span></div>
                 <ul class="project-desc">
                     <li>整合AI嬰兒活動識別 & 異常偵測，透過JNI加速</li>
@@ -268,10 +437,21 @@
                     <li>自定義視圖 & 記憶體洩漏優化，模型運算提升40%</li>
                 </ul>
             </div>
+            
+            <!-- 專案 2：AI智能割草機 -->
             <div class="card">
                 <div class="exp-title">🤖 AI智能割草機</div>
                 <div class="exp-company">ULSee · 資深Android工程師</div>
                 <div class="exp-date">2020–2022</div>
+                
+                <div class="screenshot-btn-container">
+                    <button class="view-screenshots-btn" onclick="openGalleryModal('mower')">
+                        <span class="btn-icon">📸</span>
+                        檢視作品
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+                
                 <div class="tech-stack"><span class="tech">Kotlin</span><span class="tech">BLE</span><span class="tech">自定義地圖</span><span class="tech">MVVM</span></div>
                 <ul class="project-desc">
                     <li>客製地圖繪製View，即時顯示割草機路徑與工作區域</li>
@@ -279,10 +459,21 @@
                     <li>與後端團隊協作完成設備-雲端數據同步</li>
                 </ul>
             </div>
+            
+            <!-- 專案 3：AI智能熱像儀（加入截圖按鈕） -->
             <div class="card">
                 <div class="exp-title">🌡️ AI智能熱像儀</div>
                 <div class="exp-company">ULSee · 資深Android工程師</div>
                 <div class="exp-date">2020–2022</div>
+                
+                <div class="screenshot-btn-container">
+                    <button class="view-screenshots-btn" onclick="openGalleryModal('thermal')">
+                        <span class="btn-icon">📸</span>
+                        檢視作品
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+                
                 <div class="tech-stack"><span class="tech">TCP/UDP</span><span class="tech">Coroutine</span><span class="tech">影像串流</span></div>
                 <ul class="project-desc">
                     <li>TCP/UDP Socket 確保紅外線影像低延遲傳輸</li>
@@ -338,7 +529,6 @@
                     📧 寄信洽談
                 </a>
             </div>
-            <!-- <p style="margin-top: 24px; font-size: 0.85rem; color: #5b6e8c;">※ 基於您104公開資料產生，可隨時修改聯絡方式為真實信箱。</p> -->
         </div>
     </section>
 </div>
@@ -358,9 +548,178 @@
             // 可選擇將資料動態渲染，但目前靜態頁面已完整，僅留作未來擴充
         })
         .catch(err => console.log('API not critical, static site works'));
-</script>
+// ========== 照片資料（依專案分類） ==========
+const galleryData = {
+    // AI智能割草機 5張
+    mower: [
+        { src: "01_setmap.png", caption: "設定地圖步驟1 - 從充電站開始" },
+        { src: "02_setmap.png", caption: "設定地圖步驟2 - 完成單層區域" },
+        { src: "03_setmap.png", caption: "編輯地圖 - 編輯邊界與路徑點" },
+        { src: "04_WorkMode_schedule.png", caption: "工作模式排程設定" },
+        { src: "05_WorkMode_settings.png", caption: "工作模式進階設定" }
+    ],
+    // AI智能熱像儀 3張（請將實際截圖檔名替換）
+    thermal: [
+        { src: "app_flow_chart_5.png", caption: "熱像儀 UI flow" },
+    ]
+};
 
-<script>
+let currentGalleryType = null;
+let currentGalleryIndex = 0;
+let galleryModal = null;
+
+// 開啟照片檢視視窗
+function openGalleryModal(type) {
+    currentGalleryType = type;
+    currentGalleryIndex = 0;
+    
+    const images = galleryData[type];
+    if (!images || images.length === 0) return;
+    
+    if (galleryModal) {
+        document.body.removeChild(galleryModal);
+    }
+    
+    galleryModal = document.createElement('div');
+    galleryModal.className = 'gallery-modal';
+    
+    // 關閉按鈕
+    const closeBtn = document.createElement('div');
+    closeBtn.className = 'modal-close';
+    closeBtn.innerHTML = '×';
+    closeBtn.onclick = closeGalleryModal;
+    
+    // 主要圖片區域
+    const mainArea = document.createElement('div');
+    mainArea.className = 'modal-main';
+    
+    const mainImg = document.createElement('img');
+    mainImg.id = 'modal-main-img';
+    mainImg.src = images[0].src;
+    mainImg.alt = images[0].caption;
+    
+    // 左右導航按鈕
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'modal-nav modal-prev';
+    prevBtn.innerHTML = '‹';
+    prevBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(-1); };
+    
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'modal-nav modal-next';
+    nextBtn.innerHTML = '›';
+    nextBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(1); };
+    
+    mainArea.appendChild(prevBtn);
+    mainArea.appendChild(nextBtn);
+    mainArea.appendChild(mainImg);
+    
+    // 計數器
+    const counter = document.createElement('div');
+    counter.className = 'modal-counter';
+    counter.id = 'modal-counter';
+    counter.innerText = `1 / ${images.length}`;
+    
+    // 縮圖列
+    const thumbnailsArea = document.createElement('div');
+    thumbnailsArea.className = 'modal-thumbnails';
+    thumbnailsArea.id = 'modal-thumbnails';
+    
+    images.forEach((img, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = img.src;
+        thumb.alt = img.caption;
+        thumb.className = 'modal-thumb';
+        if (idx === 0) thumb.classList.add('active');
+        thumb.onclick = () => {
+            currentGalleryIndex = idx;
+            updateGalleryModal();
+        };
+        thumbnailsArea.appendChild(thumb);
+    });
+    
+    galleryModal.appendChild(closeBtn);
+    galleryModal.appendChild(mainArea);
+    galleryModal.appendChild(counter);
+    galleryModal.appendChild(thumbnailsArea);
+    
+    // 點擊背景關閉
+    galleryModal.onclick = (e) => {
+        if (e.target === galleryModal) closeGalleryModal();
+    };
+    
+    // 鍵盤事件
+    const keyHandler = (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            navigateGallery(-1);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            navigateGallery(1);
+        } else if (e.key === 'Escape') {
+            closeGalleryModal();
+        }
+    };
+    document.addEventListener('keydown', keyHandler);
+    galleryModal.keyHandler = keyHandler;
+    
+    document.body.appendChild(galleryModal);
+    setTimeout(() => galleryModal.classList.add('show'), 10);
+}
+
+// 切換照片
+function navigateGallery(delta) {
+    const images = galleryData[currentGalleryType];
+    if (!images) return;
+    
+    let newIndex = currentGalleryIndex + delta;
+    if (newIndex < 0) newIndex = images.length - 1;
+    if (newIndex >= images.length) newIndex = 0;
+    currentGalleryIndex = newIndex;
+    updateGalleryModal();
+}
+
+// 更新 Modal 內容
+function updateGalleryModal() {
+    const images = galleryData[currentGalleryType];
+    if (!images) return;
+    
+    const mainImg = document.getElementById('modal-main-img');
+    const counter = document.getElementById('modal-counter');
+    const thumbs = document.querySelectorAll('.modal-thumb');
+    
+    if (mainImg) {
+        mainImg.src = images[currentGalleryIndex].src;
+        mainImg.alt = images[currentGalleryIndex].caption;
+    }
+    if (counter) {
+        counter.innerText = `${currentGalleryIndex + 1} / ${images.length}`;
+    }
+    thumbs.forEach((thumb, idx) => {
+        if (idx === currentGalleryIndex) {
+            thumb.classList.add('active');
+        } else {
+            thumb.classList.remove('active');
+        }
+    });
+}
+
+// 關閉 Modal
+function closeGalleryModal() {
+    if (galleryModal) {
+        if (galleryModal.keyHandler) {
+            document.removeEventListener('keydown', galleryModal.keyHandler);
+        }
+        galleryModal.classList.remove('show');
+        setTimeout(() => {
+            if (galleryModal && galleryModal.parentNode) {
+                document.body.removeChild(galleryModal);
+            }
+            galleryModal = null;
+        }, 300);
+    }
+}
+
+// Gmail 寄信功能
 function openGmailApp() {
     var email = "mrsysu@gmail.com";
     var subject = "";
