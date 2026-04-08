@@ -424,11 +424,20 @@
     <section class="section">
         <h2 class="section-title">精選作品集</h2>
         <div class="grid-2">
-            <!-- 專案 1：嬰兒監視器 -->
+            <!-- 專案 1：Lollipop 嬰兒監視器 -->
             <div class="card">
                 <div class="exp-title">🍼 Lollipop 嬰兒監視器</div>
                 <div class="exp-company">Masterwork Aoitek · 資深Android工程師</div>
                 <div class="exp-date">2022–2026</div>
+                
+                <div class="screenshot-btn-container">
+                    <button class="view-screenshots-btn" onclick="openGalleryModal('lollipop')">
+                        <span class="btn-icon">📸</span>
+                        檢視作品
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+                
                 <div class="tech-stack"><span class="tech">Kotlin</span><span class="tech">MVVM</span><span class="tech">JNI</span><span class="tech">RTSP</span><span class="tech">AI模型</span></div>
                 <ul class="project-desc">
                     <li>整合AI嬰兒活動識別 & 異常偵測，透過JNI加速</li>
@@ -460,7 +469,7 @@
                 </ul>
             </div>
             
-            <!-- 專案 3：AI智能熱像儀（加入截圖按鈕） -->
+            <!-- 專案 3：AI智能熱像儀 -->
             <div class="card">
                 <div class="exp-title">🌡️ AI智能熱像儀</div>
                 <div class="exp-company">ULSee · 資深Android工程師</div>
@@ -484,7 +493,7 @@
         </div>
     </section>
 
-    <!-- 完整工作經歷 (簡潔但專業) -->
+    <!-- 完整工作經歷 -->
     <section class="section">
         <h2 class="section-title">完整經歷</h2>
         <div class="grid-2">
@@ -500,7 +509,7 @@
         </div>
     </section>
 
-    <!-- 為什麼選擇我 (接案優勢) -->
+    <!-- 為什麼選擇我 -->
     <section class="section">
         <h2 class="section-title">為什麼適合您的專案</h2>
         <div class="grid-2">
@@ -548,197 +557,220 @@
             // 可選擇將資料動態渲染，但目前靜態頁面已完整，僅留作未來擴充
         })
         .catch(err => console.log('API not critical, static site works'));
-// ========== 照片資料（依專案分類） ==========
-const galleryData = {
-    // AI智能割草機 5張
-    mower: [
-        { src: "01_setmap.png", caption: "設定地圖步驟1 - 從充電站開始" },
-        { src: "02_setmap.png", caption: "設定地圖步驟2 - 完成單層區域" },
-        { src: "03_setmap.png", caption: "編輯地圖 - 編輯邊界與路徑點" },
-        { src: "04_WorkMode_schedule.png", caption: "工作模式排程設定" },
-        { src: "05_WorkMode_settings.png", caption: "工作模式進階設定" }
-    ],
-    // AI智能熱像儀 3張（請將實際截圖檔名替換）
-    thermal: [
-        { src: "app_flow_chart_5.png", caption: "熱像儀 UI flow" },
-    ]
-};
+    
+    // ========== 照片資料（依專案分類） ==========
+    const galleryData = {
+        // Lollipop 嬰兒監視器
+        lollipop: [
+            { src: "lollipop_01.png", caption: "嬰兒監視器主畫面 - 即時影像" },
+            { src: "lollipop_02.png", caption: "AI 活動識別 - 嬰兒狀態偵測" },
+            { src: "lollipop_03.png", caption: "異常警報設定" },
+            { src: "lollipop_04.png", caption: "應用內購買訂閱方案" },
+            { src: "lollipop_05.png", caption: "多鏡頭切換與管理" },
+            { src: "lollipop_06.png", caption: "聲音偵測與雙向語音" },
+            { src: "lollipop_07.png", caption: "睡眠分析報告" },
+            { src: "lollipop_08.png", caption: "歷史回放與事件記錄" },
+            { src: "lollipop_09.png", caption: "裝置設定與分享權限" }
+        ],
+        // AI智能割草機
+        mower: [
+            { src: "mower_01.png", caption: "初始化設定地圖" },
+            { src: "mower_02.png", caption: "割草機操控教學" },
+            { src: "mower_03.png", caption: "設定地圖步驟1 - 從充電站開始" },
+            { src: "mower_04.png", caption: "設定地圖步驟2 - 完成單層區域" },
+            { src: "mower_05.png", caption: "設定地圖步驟3" },
+            { src: "mower_06.png", caption: "設定地圖步驟4" },
+            { src: "mower_07.png", caption: "設定地圖步驟 - 設定障礙物區域" },
+            { src: "mower_08.png", caption: "設定地圖步驟 - 編輯地圖" },
+            { src: "mower_09.png", caption: "主畫面" },
+            { src: "mower_10.png", caption: "工作模式進階設定" }
 
-let currentGalleryType = null;
-let currentGalleryIndex = 0;
-let galleryModal = null;
+        ],
+        // AI智能熱像儀
+        thermal: [
+            { src: "infrared_01.png", caption: "熱像儀 - 01" },
+            { src: "infrared_02.png", caption: "熱像儀 - 02" },
+            { src: "infrared_03.png", caption: "熱像儀 - 03" },
+            { src: "infrared_04.png", caption: "熱像儀 - 04" },
+            { src: "infrared_05.png", caption: "熱像儀 - 05" },
+            { src: "infrared_06.png", caption: "熱像儀 - 06" },
+            { src: "infrared_07.png", caption: "熱像儀 - 07" },
+            { src: "infrared_08.png", caption: "熱像儀 - 08" }
+        ]
+    };
 
-// 開啟照片檢視視窗
-function openGalleryModal(type) {
-    currentGalleryType = type;
-    currentGalleryIndex = 0;
-    
-    const images = galleryData[type];
-    if (!images || images.length === 0) return;
-    
-    if (galleryModal) {
-        document.body.removeChild(galleryModal);
-    }
-    
-    galleryModal = document.createElement('div');
-    galleryModal.className = 'gallery-modal';
-    
-    // 關閉按鈕
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'modal-close';
-    closeBtn.innerHTML = '×';
-    closeBtn.onclick = closeGalleryModal;
-    
-    // 主要圖片區域
-    const mainArea = document.createElement('div');
-    mainArea.className = 'modal-main';
-    
-    const mainImg = document.createElement('img');
-    mainImg.id = 'modal-main-img';
-    mainImg.src = images[0].src;
-    mainImg.alt = images[0].caption;
-    
-    // 左右導航按鈕
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'modal-nav modal-prev';
-    prevBtn.innerHTML = '‹';
-    prevBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(-1); };
-    
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'modal-nav modal-next';
-    nextBtn.innerHTML = '›';
-    nextBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(1); };
-    
-    mainArea.appendChild(prevBtn);
-    mainArea.appendChild(nextBtn);
-    mainArea.appendChild(mainImg);
-    
-    // 計數器
-    const counter = document.createElement('div');
-    counter.className = 'modal-counter';
-    counter.id = 'modal-counter';
-    counter.innerText = `1 / ${images.length}`;
-    
-    // 縮圖列
-    const thumbnailsArea = document.createElement('div');
-    thumbnailsArea.className = 'modal-thumbnails';
-    thumbnailsArea.id = 'modal-thumbnails';
-    
-    images.forEach((img, idx) => {
-        const thumb = document.createElement('img');
-        thumb.src = img.src;
-        thumb.alt = img.caption;
-        thumb.className = 'modal-thumb';
-        if (idx === 0) thumb.classList.add('active');
-        thumb.onclick = () => {
-            currentGalleryIndex = idx;
-            updateGalleryModal();
+    let currentGalleryType = null;
+    let currentGalleryIndex = 0;
+    let galleryModal = null;
+
+    // 開啟照片檢視視窗
+    function openGalleryModal(type) {
+        currentGalleryType = type;
+        currentGalleryIndex = 0;
+        
+        const images = galleryData[type];
+        if (!images || images.length === 0) return;
+        
+        if (galleryModal) {
+            document.body.removeChild(galleryModal);
+        }
+        
+        galleryModal = document.createElement('div');
+        galleryModal.className = 'gallery-modal';
+        
+        // 關閉按鈕
+        const closeBtn = document.createElement('div');
+        closeBtn.className = 'modal-close';
+        closeBtn.innerHTML = '×';
+        closeBtn.onclick = closeGalleryModal;
+        
+        // 主要圖片區域
+        const mainArea = document.createElement('div');
+        mainArea.className = 'modal-main';
+        
+        const mainImg = document.createElement('img');
+        mainImg.id = 'modal-main-img';
+        mainImg.src = images[0].src;
+        mainImg.alt = images[0].caption;
+        
+        // 左右導航按鈕
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'modal-nav modal-prev';
+        prevBtn.innerHTML = '‹';
+        prevBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(-1); };
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'modal-nav modal-next';
+        nextBtn.innerHTML = '›';
+        nextBtn.onclick = (e) => { e.stopPropagation(); navigateGallery(1); };
+        
+        mainArea.appendChild(prevBtn);
+        mainArea.appendChild(nextBtn);
+        mainArea.appendChild(mainImg);
+        
+        // 計數器
+        const counter = document.createElement('div');
+        counter.className = 'modal-counter';
+        counter.id = 'modal-counter';
+        counter.innerText = `1 / ${images.length}`;
+        
+        // 縮圖列
+        const thumbnailsArea = document.createElement('div');
+        thumbnailsArea.className = 'modal-thumbnails';
+        thumbnailsArea.id = 'modal-thumbnails';
+        
+        images.forEach((img, idx) => {
+            const thumb = document.createElement('img');
+            thumb.src = img.src;
+            thumb.alt = img.caption;
+            thumb.className = 'modal-thumb';
+            if (idx === 0) thumb.classList.add('active');
+            thumb.onclick = () => {
+                currentGalleryIndex = idx;
+                updateGalleryModal();
+            };
+            thumbnailsArea.appendChild(thumb);
+        });
+        
+        galleryModal.appendChild(closeBtn);
+        galleryModal.appendChild(mainArea);
+        galleryModal.appendChild(counter);
+        galleryModal.appendChild(thumbnailsArea);
+        
+        // 點擊背景關閉
+        galleryModal.onclick = (e) => {
+            if (e.target === galleryModal) closeGalleryModal();
         };
-        thumbnailsArea.appendChild(thumb);
-    });
-    
-    galleryModal.appendChild(closeBtn);
-    galleryModal.appendChild(mainArea);
-    galleryModal.appendChild(counter);
-    galleryModal.appendChild(thumbnailsArea);
-    
-    // 點擊背景關閉
-    galleryModal.onclick = (e) => {
-        if (e.target === galleryModal) closeGalleryModal();
-    };
-    
-    // 鍵盤事件
-    const keyHandler = (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            navigateGallery(-1);
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            navigateGallery(1);
-        } else if (e.key === 'Escape') {
-            closeGalleryModal();
-        }
-    };
-    document.addEventListener('keydown', keyHandler);
-    galleryModal.keyHandler = keyHandler;
-    
-    document.body.appendChild(galleryModal);
-    setTimeout(() => galleryModal.classList.add('show'), 10);
-}
-
-// 切換照片
-function navigateGallery(delta) {
-    const images = galleryData[currentGalleryType];
-    if (!images) return;
-    
-    let newIndex = currentGalleryIndex + delta;
-    if (newIndex < 0) newIndex = images.length - 1;
-    if (newIndex >= images.length) newIndex = 0;
-    currentGalleryIndex = newIndex;
-    updateGalleryModal();
-}
-
-// 更新 Modal 內容
-function updateGalleryModal() {
-    const images = galleryData[currentGalleryType];
-    if (!images) return;
-    
-    const mainImg = document.getElementById('modal-main-img');
-    const counter = document.getElementById('modal-counter');
-    const thumbs = document.querySelectorAll('.modal-thumb');
-    
-    if (mainImg) {
-        mainImg.src = images[currentGalleryIndex].src;
-        mainImg.alt = images[currentGalleryIndex].caption;
-    }
-    if (counter) {
-        counter.innerText = `${currentGalleryIndex + 1} / ${images.length}`;
-    }
-    thumbs.forEach((thumb, idx) => {
-        if (idx === currentGalleryIndex) {
-            thumb.classList.add('active');
-        } else {
-            thumb.classList.remove('active');
-        }
-    });
-}
-
-// 關閉 Modal
-function closeGalleryModal() {
-    if (galleryModal) {
-        if (galleryModal.keyHandler) {
-            document.removeEventListener('keydown', galleryModal.keyHandler);
-        }
-        galleryModal.classList.remove('show');
-        setTimeout(() => {
-            if (galleryModal && galleryModal.parentNode) {
-                document.body.removeChild(galleryModal);
+        
+        // 鍵盤事件
+        const keyHandler = (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                navigateGallery(-1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                navigateGallery(1);
+            } else if (e.key === 'Escape') {
+                closeGalleryModal();
             }
-            galleryModal = null;
-        }, 300);
+        };
+        document.addEventListener('keydown', keyHandler);
+        galleryModal.keyHandler = keyHandler;
+        
+        document.body.appendChild(galleryModal);
+        setTimeout(() => galleryModal.classList.add('show'), 10);
     }
-}
 
-// Gmail 寄信功能
-function openGmailApp() {
-    var email = "mrsysu@gmail.com";
-    var subject = "";
-    var body = "";
-    
-    var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // 手機：強制 Gmail App
-        window.location.href = "googlegmail:///co?to=" + email + "&subject=" + subject + "&body=" + body;
-        // 若未安裝 Gmail App，延遲 fallback 到網頁版
-        setTimeout(function() {
-            window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + email + "&su=" + subject + "&body=" + body;
-        }, 500);
-    } else {
-        // 電腦：Gmail 網頁版
-        window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + email + "&su=" + subject + "&body=" + body, "_blank");
+    // 切換照片
+    function navigateGallery(delta) {
+        const images = galleryData[currentGalleryType];
+        if (!images) return;
+        
+        let newIndex = currentGalleryIndex + delta;
+        if (newIndex < 0) newIndex = images.length - 1;
+        if (newIndex >= images.length) newIndex = 0;
+        currentGalleryIndex = newIndex;
+        updateGalleryModal();
     }
-}
+
+    // 更新 Modal 內容
+    function updateGalleryModal() {
+        const images = galleryData[currentGalleryType];
+        if (!images) return;
+        
+        const mainImg = document.getElementById('modal-main-img');
+        const counter = document.getElementById('modal-counter');
+        const thumbs = document.querySelectorAll('.modal-thumb');
+        
+        if (mainImg) {
+            mainImg.src = images[currentGalleryIndex].src;
+            mainImg.alt = images[currentGalleryIndex].caption;
+        }
+        if (counter) {
+            counter.innerText = `${currentGalleryIndex + 1} / ${images.length}`;
+        }
+        thumbs.forEach((thumb, idx) => {
+            if (idx === currentGalleryIndex) {
+                thumb.classList.add('active');
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+    }
+
+    // 關閉 Modal
+    function closeGalleryModal() {
+        if (galleryModal) {
+            if (galleryModal.keyHandler) {
+                document.removeEventListener('keydown', galleryModal.keyHandler);
+            }
+            galleryModal.classList.remove('show');
+            setTimeout(() => {
+                if (galleryModal && galleryModal.parentNode) {
+                    document.body.removeChild(galleryModal);
+                }
+                galleryModal = null;
+            }, 300);
+        }
+    }
+
+    // Gmail 寄信功能
+    function openGmailApp() {
+        var email = "mrsysu@gmail.com";
+        var subject = "";
+        var body = "";
+        
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            window.location.href = "googlegmail:///co?to=" + email + "&subject=" + subject + "&body=" + body;
+            setTimeout(function() {
+                window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + email + "&su=" + subject + "&body=" + body;
+            }, 500);
+        } else {
+            window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + email + "&su=" + subject + "&body=" + body, "_blank");
+        }
+    }
 </script>
 </body>
 </html>
