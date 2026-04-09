@@ -241,6 +241,9 @@
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             object-fit: contain;
+            /* 新增白色邊框，避免深色圖片與黑色背景混淆 */
+            border: 1px solid white;
+            background-color: #f0f0f0;
         }
         .modal-close {
             position: absolute;
@@ -371,6 +374,9 @@
             .modal-close { top: 10px; right: 15px; width: 40px; height: 40px; font-size: 32px; }
             .modal-thumb { width: 45px; height: 45px; }
             .view-screenshots-btn { padding: 12px 16px; font-size: 0.9rem; }
+            .modal-main img {
+                border-width: 2px;
+            }
         }
     </style>
 </head>
@@ -513,11 +519,11 @@
     <section class="section">
         <h2 class="section-title">為什麼適合您的專案</h2>
         <div class="grid-2">
-            <div class="card">✅ <strong>軟體品質至上</strong><br>熱衷設計模式、重構、單元測試，交付乾淨且可維護的程式碼。</div>
+            <div class="card">✅ <strong>軟體品質至上</strong><br>熱衷設計模式、重構、單元測試，交付乾淨且可維護的程式碼，減少技術債。</div>
             <div class="card">⚡ <strong>效能調校專家</strong><br>記憶體洩漏分析、AI模型邊緣加速、減少功耗與延遲。</div>
             <div class="card">🤝 <strong>跨部門協作經驗</strong><br>與UI/UX、後端、PM、硬體團隊無縫合作，德國客戶文件審查通過。</div>
-            <div class="card">🧠 <strong>AI整合落地能力</strong><br>從模型訓練到Android端JNI部署，真正讓AI功能上線。</div>
-            <div class="card">📱 <strong>完整產品生命週期</strong><br>Google Play上架、內購訂閱、CI/CD自動化發布，減少技術債。</div>
+            <div class="card">🧠 <strong>AI整合落地能力</strong><br>從模型訓練、JNI / C++ 底層整合、再到Android端模型部署，真正讓AI功能上線。</div>
+            <div class="card">📱 <strong>完整產品生命週期</strong><br>從需求分析、架構設計、開發測試、到Google Play上架、內購訂閱、CI/CD自動化發布，具備完整產品開發經驗。</div>
             <div class="card">🔐 <strong>資安意識</strong><br>持有Google Cybersecurity證照，開發過程考量網路安全。</div>
         </div>
     </section>
@@ -528,7 +534,7 @@
         <div style="background: white; border-radius: 32px; padding: 32px; box-shadow: 0 8px 20px rgba(0,0,0,0.03); border: 1px solid #eef2f6;">
             <p style="font-size: 1.2rem; margin-bottom: 16px;">📬 歡迎業主、技術團隊、新創公司洽談</p>
             <ul style="margin-left: 20px; margin-bottom: 24px;">
-                <li>✔ 可承接項目：Android App從零開發、架構重構、效能優化、上架與 CI/CD、AI 整合與落地、IoT 智慧裝置</li>
+                <li>✔ 可承接項目：Android App從零開發、既有專案維護、架構重構、效能優化、上架管理、AI 整合與落地、IoT 智慧裝置</li>
                 <li>✔ 各式客製化軟體需求：不論產業、不限形式，歡迎提出討論技術可行性</li>
                 <li>✔ 服務模式：專案制 / 時數制 / 長期顧問</li>
                 <li>✔ 地點：雙北優先，全台遠端協作</li>
@@ -562,15 +568,15 @@
     const galleryData = {
         // Lollipop 嬰兒監視器
         lollipop: [
-            { src: "lollipop_01.png", caption: "嬰兒監視器主畫面 - 即時影像" },
-            { src: "lollipop_02.png", caption: "AI 活動識別 - 嬰兒狀態偵測" },
-            { src: "lollipop_03.png", caption: "異常警報設定" },
-            { src: "lollipop_04.png", caption: "應用內購買訂閱方案" },
-            { src: "lollipop_05.png", caption: "多鏡頭切換與管理" },
-            { src: "lollipop_06.png", caption: "聲音偵測與雙向語音" },
-            { src: "lollipop_07.png", caption: "睡眠分析報告" },
-            { src: "lollipop_08.png", caption: "歷史回放與事件記錄" },
-            { src: "lollipop_09.png", caption: "裝置設定與分享權限" }
+            { src: "lollipop_01.png", caption: "lollipop - 01" },
+            { src: "lollipop_02.png", caption: "lollipop - 02" },
+            { src: "lollipop_03.png", caption: "lollipop - 03" },
+            { src: "lollipop_04.png", caption: "lollipop - 04" },
+            { src: "lollipop_05.png", caption: "lollipop - 05" },
+            { src: "lollipop_06.png", caption: "lollipop - 06" },
+            { src: "lollipop_07.png", caption: "lollipop - 07" },
+            { src: "lollipop_08.png", caption: "lollipop - 08" },
+            { src: "lollipop_09.png", caption: "lollipop - 09" }
         ],
         // AI智能割草機
         mower: [
